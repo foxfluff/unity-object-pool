@@ -11,6 +11,9 @@ public class GameObjectPool : MonoBehaviour
 	[SerializeField]
 	int PoolSize;
 
+	[SerializeField]
+	bool EnabledByDefault;
+
 	List<GameObject> objectPool;
 	List<GameObject> leasedObjectPool;
 
@@ -22,6 +25,15 @@ public class GameObjectPool : MonoBehaviour
 		for (int i = 1; i <= PoolSize; i++)
 		{
 			GameObject newObject = Instantiate(PooledObject);
+
+			if (EnabledByDefault)
+			{
+				newObject.SetActive(true);
+			} else
+			{
+				newObject.SetActive(false);
+			}
+
 			newObject.name = string.Format("{0}({1})", PooledObject.name, i);
 			newObject.transform.SetParent(gameObject.transform);
 
