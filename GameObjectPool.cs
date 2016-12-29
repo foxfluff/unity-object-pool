@@ -14,9 +14,11 @@ public class GameObjectPool : MonoBehaviour
 	List<GameObject> objectPool;
 	List<GameObject> leasedObjectPool;
 
-	// Use this for initialization
 	void Start ()
 	{
+		objectPool = new List<GameObject>();
+		leasedObjectPool = new List<GameObject>();
+
 		for (int i = 1; i <= PoolSize; i++)
 		{
 			GameObject newObject = Instantiate(PooledObject);
